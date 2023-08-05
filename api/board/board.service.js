@@ -62,7 +62,13 @@ async function add(board) {
 async function update(board) {
   try {
     const boardToSave = {
+      title: board.title,
+      imgUrl: board.imgUrl,
+      bgColor: board.bgColor,
+      isStarred: board.isStarred,
+      createdBy: board.createdBy,
       labels: board.labels,
+      style: board.style,
       members: board.members,
       cover: board.cover,
       backGround: board.backGround,
