@@ -64,6 +64,9 @@ export function setupSocketAPI(http) {
       socket.broadcast.to(socket.myTopic).emit('on-update-task', task)
     })
     socket.on('notification-push', ({notification,members}) => {
+      members.forEach(m =>{
+        emitToUser({type:'on-notifcation-push',data:notification,userId:m.id})
+      })
       socket.broadcast.to(socket.myTopic).emit('on-update-task', task)
     })
 
