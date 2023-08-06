@@ -40,21 +40,21 @@ export function setupSocketAPI(http) {
     //   })
     // })
 
-    socket.on('chat-send-msg', ({action, payload}) => {
-        console.log('payload', payload,'action', action);
-        logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
-        // emits to all sockets:
-        // gIo.emit('chat addMsg', msg)
-        // emits only to sockets in the same room
-        gIo.to(socket.myTopic).emit(`chat-${action}-msg`, payload)
-        
+    socket.on('chat-send-msg', ({ action, payload }) => {
+      console.log('payload', payload, 'action', action);
+      logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
+      // emits to all sockets:
+      // gIo.emit('chat addMsg', msg)
+      // emits only to sockets in the same room
+      gIo.to(socket.myTopic).emit(`chat-${action}-msg`, payload)
+
     })
     socket.on('board-update', (board) => {
       console.log(board);
-        // console.log('payload', payload,'action', action);
-        logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
-        gIo.to(socket.myTopic).emit(`on-board-update`, board)
-        
+      // console.log('payload', payload,'action', action);
+      logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
+      gIo.to(socket.myTopic).emit(`on-board-update`, board)
+
     })
 
     socket.on('chat-set-user-is-typing', (username) => {
@@ -63,12 +63,12 @@ export function setupSocketAPI(http) {
     socket.on('update-task', (task) => {
       socket.broadcast.to(socket.myTopic).emit('on-update-task', task)
     })
-    socket.on('notification-push', ({notification,members}) => {
-      socket.broadcast.to(socket.myTopic).emit('on-update-task', task)
-    })
+    // socket.on('notification-push', ({notification,members}) => {
+    //   socket.broadcast.to(socket.myTopic).emit('on-update-task', task)
+    // })
 
     // socket.on('shop-admin-changed')
-    socket.on('set-user-socket', ({userId,username}) => {
+    socket.on('set-user-socket', ({ userId, username }) => {
       logger.info(
         `Setting socket.userId = ${userId} username: ${username}for socket [id: ${socket.id}]`
       )
