@@ -63,7 +63,7 @@ export function setupSocketAPI(http) {
     })
     socket.on('notification-push', ({ notification, members }) => {
       members.forEach(m => {
-        emitToUser({ type: 'on-notifcation-push', data: {members,notification}, userId: m.id })
+        emitToUser({ type: 'on-notifcation-push', data: { members, notification }, userId: m.id })
       })
     })
 
