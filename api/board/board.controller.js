@@ -7,8 +7,8 @@ export async function getBoards(req, res) {
     const filterBy = {
 
       //Check if need filter
-      txt: req.query.txt || '',
-      pageIdx: req.query.pageIdx
+      // txt: req.query.txt || '',
+      // pageIdx: req.query.pageIdx
     }
     const boards = await boardService.query(filterBy)
     res.json(boards)
