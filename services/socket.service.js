@@ -51,7 +51,7 @@ export function setupSocketAPI(http) {
     })
     socket.on('board-update', (board) => {
       logger.info(`New board update from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
-      gIo.to(socket.myTopic).emit(`on-board-update`, board)
+      socket.broadcast.to(socket.myTopic).emit(`on-board-update`, board)
 
     })
 
