@@ -67,6 +67,8 @@ async function update(board) {
       imgUrl: board.imgUrl,
       bgColor: board.bgColor,
       isStarred: board.isStarred,
+      isRecent: board.isRecent,
+      recentAt: board.recentAt,
       createdBy: board.createdBy,
       labels: board.labels,
       style: board.style,
