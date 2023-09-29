@@ -31,7 +31,6 @@ async function query(filterBy = {}) {
     }
 }
 
-
 async function getById(userId) {
     try {
         const collection = await dbService.getCollection('user')
@@ -44,6 +43,7 @@ async function getById(userId) {
         throw err
     }
 }
+
 async function getByUsername(username) {
     try {
         const collection = await dbService.getCollection('user')
