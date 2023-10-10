@@ -6,7 +6,7 @@ export async function login(req, res) {
     try {
         const user = await authService.login(username, password)
         const loginToken = authService.getLoginToken(user)
-        logger.info('User login: ', user)
+        logger.info('User login: ', user.fullname)
         res.cookie('loginToken', loginToken, {sameSite: 'None', secure: true})
         res.json(user)
     } catch (err) {

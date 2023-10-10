@@ -19,7 +19,6 @@ async function query(filterBy = { txt: '' }) {
     // }
 
     const boards = boardCursor.toArray()
-    console.log(boards);
     return boards
   } catch (err) {
     logger.error('cannot find boards', err)

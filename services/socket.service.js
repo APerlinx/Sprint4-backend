@@ -25,7 +25,6 @@ export function setupSocketAPI(http) {
       }
       socket.join(topic)
       socket.myTopic = topic
-      console.log(socket.myTopic);
     })
 
     // socket.on('chat-send-msg', ({action, payload}) => {
@@ -41,7 +40,6 @@ export function setupSocketAPI(http) {
     // })
 
     socket.on('chat-send-msg', ({ action, payload }) => {
-      console.log('payload', payload, 'action', action);
       logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
       // emits to all sockets:
       // gIo.emit('chat addMsg', msg)
@@ -105,7 +103,6 @@ async function emitToUser({ type, data, userId }) {
 // Optionally, broadcast to a room / to all
 async function broadcast({ type, data, room = null, userId = '' }) {
   userId = userId.toString()
-  console.log(userId);
 
   logger.info(`Broadcasting event: ${type}`)
   const excludedSocket = await _getUserSocket(userId)

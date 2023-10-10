@@ -1,7 +1,7 @@
-import {dbService} from '../../services/db.service.js'
-import {logger} from '../../services/logger.service.js'
+import { dbService } from '../../services/db.service.js'
+import { logger } from '../../services/logger.service.js'
 import mongodb from 'mongodb'
-const {ObjectId} = mongodb
+const { ObjectId } = mongodb
 
 export const userService = {
     add,            // Create (Signup)
@@ -74,7 +74,8 @@ async function update(user) {
             imgUrl: user.imgUrl,
             backgroundColor: user.backgroundColor,
             notifications: user.notifications,
-            isUserReadNotifications: user.isUserReadNotifications
+            isUserReadNotifications: user.isUserReadNotifications,
+            email: user.email
         }
         const collection = await dbService.getCollection('user')
         await collection.updateOne({ _id: userToSave._id }, { $set: userToSave })
