@@ -27,26 +27,6 @@ export function setupSocketAPI(http) {
       socket.myTopic = topic
     })
 
-    // socket.on('chat-send-msg', ({action, payload}) => {
-    //   logger.info(
-    //     `New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`
-    //   )
-    //   broadcast({
-    //     type: `chat-${action}-msg`,
-    //     data: payload,
-    //     room: socket.myTopic,
-    //     userId: socket.userId,
-    //   })
-    // })
-
-    socket.on('chat-send-msg', ({ action, payload }) => {
-      logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
-      // emits to all sockets:
-      // gIo.emit('chat addMsg', msg)
-      // emits only to sockets in the same room
-      gIo.to(socket.myTopic).emit(`chat-${action}-msg`, payload)
-
-    })
     socket.on('board-update', (board) => {
       logger.info(`New board update from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
       socket.broadcast.to(socket.myTopic).emit(`on-board-update`, board)
